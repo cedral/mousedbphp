@@ -11,3 +11,7 @@ stats/
 .env
 
 application/config/config.ini.live
+
+# Database dumps never belong in the repo (schema files live in documents/sql)
+/*.sql
+*.sql.gz

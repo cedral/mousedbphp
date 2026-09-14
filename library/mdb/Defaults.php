@@ -5,6 +5,8 @@ class mdb_Defaults
 		'system.title'						=> 'Mouse Breeding Database',
 		'system.versions.bzr.binary'		=> 'bzr',
 		'system.dojo.theme'					=> 'soria',
+		// https so the app works on TLS hosts; Google still serves Dojo 1.5.0
+		'system.dojo.cdn.base'				=> 'https://ajax.googleapis.com/ajax/libs/dojo/',
 		'system.display.footer.launchpad'	=> true,
 	);
 

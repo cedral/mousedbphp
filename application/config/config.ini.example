@@ -28,7 +28,7 @@
 ; system.dojo.cdn.* are declared.
 ;system.dojo.local=/dojo
 ; see Zend_Dojo::setCdnBase()
-;system.dojo.cdn.base=http://ajax.googleapis.com/ajax/libs/dojo
+;system.dojo.cdn.base=https://ajax.googleapis.com/ajax/libs/dojo/
 ; see Zend_Dojo::setCdnVersion()
 ;system.dojo.cdn.version=1.2.3
 ; see Zend_Dojo::setCdnDojoPath()

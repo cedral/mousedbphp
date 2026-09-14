@@ -1,0 +1,54 @@
+<h2><?=$this->escape($this->title)?></h2>
+<div>
+<?php
+	$this->addHelperPath('Zend/Dojo/View/Helper/', 'Zend_Dojo_View_Helper');
+	echo $this->form('forms_Search',
+		array('action' => $this->url( array('action' => 'search' ) ), 'method' => 'get'),
+		$this->textBox('q', $this->query,
+			array('style' => 'width:400px; padding:2px;'), array('size' => '56')
+		).
+		$this->submitButton('submitSearch', 'Search Strains', array(), array('style' => 'margin-top: 1px;')).
+		( $this->canSearch ? ' <a href="'.$this->url ( array ('controller' => 'search', 'action' => 'view', 'subject' => Searches::SUBJECT_STRAIN ), null, true ).'">advanced</a>' : '')
+		
+	);
+?>
+</div>
+<br />
+<?php if ($this->search_error != '') : ?>
+<div class="error"><?=$this->search_error?></div>
+<?php elseif ($this->query != '') : ?>
+<h3><?=$this->paginator->getAdapter ()->count ()?> results found for <em><?=$this->escape ( $this->query )?></em></h3>
+
+<?php if ($this->paginator->count ()) : ?>
+<table class="expand sortable">
+	<tr>
+		<th>Strain</th>
+		<th>p/bEMS</th>
+		<th>Mini/MaxiP</th>
+		<th>ESCLine</th>
+		<th>Backbone p/bEMS</th>
+		<th>Reporter</th>
+		<th>Description</th>
+	</tr>
+<?php
+	foreach ( $this->paginator as $strain ) :
+		?>
+<tr>
+		<td><a href="<?=$this->url ( array ('controller' => 'strain', 'action' => 'view', 'id' => $strain['id'] ), null, true )?>"><?=$this->escape ( $strain['strain_name'] )?></a></td>
+		<td><?=$this->escape ( $strain['pems'] != '' ? $strain['pems'] : $strain['bems'] )?></td>
+		<td><?=$this->escape ( $strain['promoter'] )?></td>
+		<td><?=$this->escape ( $strain['esc_line'] )?></td>
+		<td><?=$this->escape ( $strain['backbone_pems'] )?></td>
+		<td><?=$this->escape ( $strain['reporter'] )?></td>
+<!-- 		<td title="<?=$this->escape ( $strain['description'] )?>"><?= $strain['description'] != '' ? $this->escape ( trim(substr($strain['description'], 0, 10)) ).'&hellip;' : '' ?></td>  -->
+		<td><?=$this->escape ( $strain['description'] )?></td>
+	</tr>
+<?php
+	endforeach;
+	?>
+</table>
+
+<?php endif;?>
+
+<?=$this->paginationControl ( $this->paginator, 'Elastic', 'paginator.phtml', array('q' => $this->query) )?>
+<?php endif;?>

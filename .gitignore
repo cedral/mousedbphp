@@ -1,0 +1,11 @@
+# Live credentials - use config.ini.example as the template
+application/config/config.ini
+application/config/zend_framework.ini
+
+# Webalizer output copied from the old host, not source
+stats/
+
+# Local dev
+*.log
+/vendor/
+.env

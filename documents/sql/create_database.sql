@@ -223,7 +223,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL auto_increment,
   `username` varchar(45) NOT NULL,
   `email` varchar(45) default NULL,
-  `password` varchar(45) default NULL,
+  `password` varchar(255) default NULL,
   `active` tinyint(1) NOT NULL default '0',
   `email_verified` tinyint(1) NOT NULL default '0',
   `role_id` int(11) NOT NULL default '2',

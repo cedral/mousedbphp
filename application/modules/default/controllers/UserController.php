@@ -28,13 +28,16 @@ class UserController extends mdb_Controller {
 
 		$db = Zend_Db_Table::getDefaultAdapter();
 		$authenticated = false;
+		$userRow = null;
 		if ($db) {
-			$authAdapter = new Zend_Auth_Adapter_DbTable( Zend_Db_Table::getDefaultAdapter(), 'users', 'username', 'password', 'MD5(?) AND active = TRUE' );
-			$authAdapter->setIdentity( $values ['username'] )->setCredential( $values ['password'] );
-			// Perform the authentication query, saving the result
 			try {
-				$result = $authAdapter->authenticate();
-				$authenticated = $result->isValid();
+				$userRow = $db->fetchRow(
+					$db->select()->from('users', array('id', 'username', 'role_id', 'password'))
+						->where('username = ?', $values['username'])
+						->where('active = 1')
+				);
+				// Accepts legacy MD5 rows as well as password_hash() rows.
+				$authenticated = $userRow && mdb_Password::verify($values['password'], $userRow['password']);
 			} catch (Exception $e) {
 				mdb_Messages::add($e->getMessage(), 'error');
 				mdb_Log::Write('unable to login: '.$e->__toString());
@@ -42,7 +45,11 @@ class UserController extends mdb_Controller {
 		}
 
 		if ($authenticated) {
-			Zend_Auth::getInstance()->getStorage()->write( $authAdapter->getResultRowObject( array('id', 'username', 'role_id' ), null ) );
+			$identity = new stdClass();
+			$identity->id = $userRow['id'];
+			$identity->username = $userRow['username'];
+			$identity->role_id = $userRow['role_id'];
+			Zend_Auth::getInstance()->getStorage()->write( $identity );
 			if ($values ['redir_uri'] ) {
 				$this->_helper->redirector->gotoUrl($values['redir_uri'], array('prependBase' => false) );
 			} else {

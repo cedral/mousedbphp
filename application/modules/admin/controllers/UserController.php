@@ -59,9 +59,12 @@ class Admin_UserController extends mdb_Controller {
 				$users = new Users ( );
 				$row = $users->createRow ();
 				foreach ( $form->getValues () as $key => $value ) {
-					if ($row->__isset ( $key ) && ! in_array ( $key, array ('id' ) )) {
+					if ($row->__isset ( $key ) && ! in_array ( $key, array ('id', 'password' ) )) {
 						$row->__set ( $key, $value );
 					}
+				}
+				if ($form->getValue('password')) {
+					$row->password = mdb_Password::hash($form->getValue('password'));
 				}
 				try {
 					$row->save ();
@@ -134,7 +137,7 @@ class Admin_UserController extends mdb_Controller {
 						}
 					}
 					if ($form->getValue('password')) {
-						$row->password = md5($form->getValue('password'));
+						$row->password = mdb_Password::hash($form->getValue('password'));
 					}
 					try {
 						$row->save ();

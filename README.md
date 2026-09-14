@@ -47,6 +47,11 @@ application fixes (see the git history for details):
 - `eregi()` replaced with `preg_match()`.
 - Validators no longer create dynamic properties; use `setId()` /
   `setWhere()` on `mdb_Validate_UniqueValue`.
+- Passwords set through the admin user forms are hashed with
+  `password_hash()`. Rows still holding the original unsalted MD5 digest
+  keep working and are upgraded the next time that user's password is set.
+  Existing installs must run `documents/sql/upgrade_password_hash.sql` once
+  to widen the column.
 - Strict SQL mode is relaxed per connection in `mdb_Initializer::initDb()`,
   because the forms store empty strings in integer and date columns.
 - Dojo is loaded from Google's CDN over https by default; override with
@@ -70,8 +75,6 @@ Bundled third-party components keep their own licenses:
 
 ## Known follow-ups
 
-- Passwords are stored as unsalted MD5 (`users.password`). Moving to
-  `password_hash()` with rehash-on-login is recommended.
 - Tables use the MyISAM engine. Converting to InnoDB is safe and gives
   transactions and crash recovery.
 - Dojo 1.5 is end of life. It still works and is still served by the CDN,

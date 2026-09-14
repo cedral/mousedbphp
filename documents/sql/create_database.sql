@@ -2,7 +2,7 @@ CREATE TABLE `acl_resources` (
   `module` varchar(35) NOT NULL,
   `controller` varchar(35) NOT NULL,
   PRIMARY KEY  (`module`,`controller`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `breeding_cages` (
   `id` int(11) NOT NULL default '0',
@@ -14,7 +14,7 @@ CREATE TABLE `breeding_cages` (
   `active` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  USING BTREE (`id`),
   KEY `stud` (`assigned_stud_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `cages` (
   `id` int(11) NOT NULL auto_increment,
@@ -25,7 +25,7 @@ CREATE TABLE `cages` (
   `lastmodified` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  USING BTREE (`id`),
   UNIQUE KEY `assigned_id` (`assigned_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL auto_increment,
@@ -36,19 +36,19 @@ CREATE TABLE `comments` (
   `modified_on` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  USING BTREE (`id`),
   KEY `new_index` (`ref_table`,`ref_item_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `default_user_prefs` (
   `preference` varchar(100) NOT NULL,
   `value` text,
   PRIMARY KEY  (`preference`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `global_prefs` (
   `preference` varchar(100) NOT NULL,
   `value` text,
   PRIMARY KEY  (`preference`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `litters` (
   `id` int(11) NOT NULL auto_increment,
@@ -82,7 +82,7 @@ CREATE TABLE `litters` (
   KEY `parents` (`father_id`,`mother_id`,`mother2_id`,`mother3_id`),
   KEY `generation` (`generation`),
   FULLTEXT KEY `fulltextindex` (`assigned_id`,`generation`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `mice` (
   `id` int(11) NOT NULL auto_increment,
@@ -118,7 +118,7 @@ CREATE TABLE `mice` (
   KEY `generation` (`generation`),
   KEY `ear_mark` (`ear_mark`),
   FULLTEXT KEY `fulltext` (`assigned_id`,`status`,`genotype`,`generation`,`chip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `permissions` (
   `role_id` int(11) default NULL,
@@ -129,7 +129,7 @@ CREATE TABLE `permissions` (
   `id` int(11) NOT NULL auto_increment,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `perms` (`role_id`,`module`,`controller`,`action`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `protocols` (
   `id` int(11) NOT NULL auto_increment,
@@ -138,7 +138,7 @@ CREATE TABLE `protocols` (
   `lastmodified` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  USING BTREE (`id`),
   UNIQUE KEY `protocol_name` (`protocol_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL auto_increment,
@@ -146,7 +146,7 @@ CREATE TABLE `roles` (
   `parent_role_id` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `acl_role_name` (`role_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `searches` (
   `id` int(11) NOT NULL auto_increment,
@@ -161,7 +161,7 @@ CREATE TABLE `searches` (
   `limit` int(11) default NULL,
   PRIMARY KEY  (`id`),
   KEY `user` (`user_id`,`type`,`title`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `strains` (
   `id` int(11) NOT NULL auto_increment,
@@ -186,7 +186,7 @@ CREATE TABLE `strains` (
   PRIMARY KEY  USING BTREE (`id`),
   UNIQUE KEY `strain_name` (`strain_name`),
   FULLTEXT KEY `fulltext` (`strain_name`,`pems`,`promoter`,`esc_line`,`backbone_pems`,`reporter`,`jax_strain_name`,`jax_store_number`,`jax_generation`,`jax_genotype`,`jax_url`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tags` (
   `ref_table` varchar(45) NOT NULL,
@@ -195,7 +195,7 @@ CREATE TABLE `tags` (
   `user_id` int(11) default NULL,
   PRIMARY KEY  (`ref_table`,`ref_item_id`,`tag`),
   KEY `tag` (`tag`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `transfers` (
   `id` int(11) NOT NULL auto_increment,
@@ -210,14 +210,14 @@ CREATE TABLE `transfers` (
   KEY `from_cage` (`from_cage_id`),
   KEY `to_cage` (`to_cage_id`),
   KEY `mouse` (`mouse_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `user_prefs` (
   `user_id` int(11) NOT NULL,
   `preference` varchar(100) NOT NULL,
   `value` text,
   PRIMARY KEY  (`user_id`,`preference`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL auto_increment,
@@ -232,7 +232,7 @@ CREATE TABLE `users` (
   PRIMARY KEY  USING BTREE (`id`),
   UNIQUE KEY `username` (`username`),
   FULLTEXT KEY `fulltxt` (`username`,`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `weaning_cages` (
   `id` int(11) NOT NULL default '0',
@@ -240,4 +240,4 @@ CREATE TABLE `weaning_cages` (
   `sex` char(1) default NULL,
   `lastmodified` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  USING BTREE (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

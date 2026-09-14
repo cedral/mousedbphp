@@ -54,6 +54,8 @@ application fixes (see the git history for details):
   to widen the column.
 - Strict SQL mode is relaxed per connection in `mdb_Initializer::initDb()`,
   because the forms store empty strings in integer and date columns.
+- Tables are InnoDB. Existing installs can convert with
+  `documents/sql/upgrade_innodb.sql`.
 - Dojo is loaded from Google's CDN over https by default; override with
   `system.dojo.cdn.*` or `system.dojo.local` in `config.ini`.
 
@@ -75,7 +77,5 @@ Bundled third-party components keep their own licenses:
 
 ## Known follow-ups
 
-- Tables use the MyISAM engine. Converting to InnoDB is safe and gives
-  transactions and crash recovery.
 - Dojo 1.5 is end of life. It still works and is still served by the CDN,
   but any front-end rework should plan to replace it.

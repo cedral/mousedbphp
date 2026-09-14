@@ -56,6 +56,10 @@ application fixes (see the git history for details):
   because the forms store empty strings in integer and date columns.
 - Tables are InnoDB. Existing installs can convert with
   `documents/sql/upgrade_innodb.sql`.
+- The search pages need FULLTEXT indexes that the original schema never
+  defined. Existing installs must run
+  `documents/sql/upgrade_fulltext_indexes.sql` once or every search fails
+  with MySQL error 1191.
 - Dojo is loaded from Google's CDN over https by default; override with
   `system.dojo.cdn.*` or `system.dojo.local` in `config.ini`.
 

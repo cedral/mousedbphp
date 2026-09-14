@@ -13,7 +13,9 @@ CREATE TABLE `breeding_cages` (
   `assigned_stud_id` int(11) default NULL,
   `active` tinyint(1) NOT NULL default '1',
   PRIMARY KEY  USING BTREE (`id`),
-  KEY `stud` (`assigned_stud_id`)
+  KEY `stud` (`assigned_stud_id`),
+  FULLTEXT KEY `ft_mating_breeding` (`mating_type`,`breeding_type`),
+  FULLTEXT KEY `ft_mating_type` (`mating_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `cages` (
@@ -24,7 +26,8 @@ CREATE TABLE `cages` (
   `protocol_id` int(11) default NULL,
   `lastmodified` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  USING BTREE (`id`),
-  UNIQUE KEY `assigned_id` (`assigned_id`)
+  UNIQUE KEY `assigned_id` (`assigned_id`),
+  FULLTEXT KEY `ft_assigned_id` (`assigned_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `comments` (
@@ -35,7 +38,8 @@ CREATE TABLE `comments` (
   `ref_table` varchar(45) default NULL,
   `modified_on` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  USING BTREE (`id`),
-  KEY `new_index` (`ref_table`,`ref_item_id`)
+  KEY `new_index` (`ref_table`,`ref_item_id`),
+  FULLTEXT KEY `ft_comment` (`comment`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `default_user_prefs` (
@@ -81,7 +85,8 @@ CREATE TABLE `litters` (
   KEY `breeding_cage_id` (`breeding_cage_id`),
   KEY `parents` (`father_id`,`mother_id`,`mother2_id`,`mother3_id`),
   KEY `generation` (`generation`),
-  FULLTEXT KEY `fulltextindex` (`assigned_id`,`generation`)
+  FULLTEXT KEY `fulltextindex` (`assigned_id`,`generation`),
+  FULLTEXT KEY `ft_assigned_id` (`assigned_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `mice` (
@@ -185,7 +190,9 @@ CREATE TABLE `strains` (
   `location` varchar(45) default NULL,
   PRIMARY KEY  USING BTREE (`id`),
   UNIQUE KEY `strain_name` (`strain_name`),
-  FULLTEXT KEY `fulltext` (`strain_name`,`pems`,`promoter`,`esc_line`,`backbone_pems`,`reporter`,`jax_strain_name`,`jax_store_number`,`jax_generation`,`jax_genotype`,`jax_url`)
+  FULLTEXT KEY `fulltext` (`strain_name`,`pems`,`promoter`,`esc_line`,`backbone_pems`,`reporter`,`jax_strain_name`,`jax_store_number`,`jax_generation`,`jax_genotype`,`jax_url`),
+  FULLTEXT KEY `ft_strain_name` (`strain_name`),
+  FULLTEXT KEY `ft_strain_promoter` (`strain_name`,`promoter`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tags` (
@@ -231,7 +238,8 @@ CREATE TABLE `users` (
   `last_ip` varchar(45) default NULL,
   PRIMARY KEY  USING BTREE (`id`),
   UNIQUE KEY `username` (`username`),
-  FULLTEXT KEY `fulltxt` (`username`,`email`)
+  FULLTEXT KEY `fulltxt` (`username`,`email`),
+  FULLTEXT KEY `ft_username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `weaning_cages` (

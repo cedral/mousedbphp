@@ -159,8 +159,8 @@ class SearchController extends mdb_Controller {
 	        if ($params['search_submit_reason'] == 'save' or $params['search_submit_reason'] == '') {
 	            $form->getElement('search_title')->setRequired(true);
 	    	    if (isset($id)) {
-	    	        $form->getElement('search_title')->getValidator('UniqueValue')->id = $id;
-	    	        $form->getElement('search_title')->getValidator('UniqueValue')->where = 'user_id = '.$this->_user_id;
+	    	        $form->getElement('search_title')->getValidator ( 'UniqueValue' )->setId($id);
+	    	        $form->getElement('search_title')->getValidator('UniqueValue')->setWhere('user_id = '.$this->_user_id);
 	    	    }
 	        } else {
 	        	$form->getElement('search_title')->removeValidator('UniqueValue');
@@ -198,8 +198,8 @@ class SearchController extends mdb_Controller {
 	                $row->public = $params['search_public'];
 	                $row->limit = $params['search_result_limit'];
 	                $row->subject = $subject;
-	                $row->params = serialize($params['search_details']);
-	                $row->output_fields = serialize($params['search_output_fields']);
+	                $row->params = serialize(isset($params['search_details']) ? $params['search_details'] : array());
+	                $row->output_fields = serialize(isset($params['search_output_fields']) ? $params['search_output_fields'] : array());
 	                try {
 						$row->save ();
 						mdb_Messages::add( 'search saved' );

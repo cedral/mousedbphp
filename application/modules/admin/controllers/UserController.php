@@ -107,7 +107,7 @@ class Admin_UserController extends mdb_Controller {
 				if (! array_key_exists('username', $formData)) {
 				     $form->removeElement('username');
 				} else {
-			        $form->getElement( 'username' )->getValidator( 'UniqueValue' )->id = $formData ['id'];
+			        $form->getElement( 'username' )->getValidator ( 'UniqueValue' )->setId($formData ['id']);
 				}
 				if ($form->isValid ( $formData )) {
 					$id = ( int ) $form->getValue ( 'id' );

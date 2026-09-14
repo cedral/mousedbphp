@@ -104,7 +104,7 @@ class mdb_Controller_Simple extends mdb_Controller {
 				if (! array_key_exists ( $this->_assigned_id_col, $formData )) {
 					$form->removeElement ( $this->_assigned_id_col );
 				} else {
-					$form->getElement ( $this->_assigned_id_col )->getValidator ( 'UniqueValue' )->id = $formData ['id'];
+					$form->getElement ( $this->_assigned_id_col )->getValidator ( 'UniqueValue' )->setId($formData ['id']);
 				}
 				if ($form->isValid ( $formData )) {
 					$id = ( int ) $form->getValue ( 'id' );

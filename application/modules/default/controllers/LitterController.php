@@ -257,7 +257,7 @@ class LitterController extends mdb_Controller {
 				if (! array_key_exists('assigned_id', $formData)) {
 				     $form->removeElement('assigned_id');
 				} else {
-    				$form->getElement('assigned_id')->getValidator('UniqueValue')->id = $formData['id'];
+    				$form->getElement('assigned_id')->getValidator('UniqueValue')->setId($formData['id']);
 				}
 				if ($form->isValid ( $formData )) {
 					$id = ( int ) $form->getValue ( 'id' );
@@ -459,7 +459,7 @@ class LitterController extends mdb_Controller {
 		if ($this->_request->isPost ()) {
 			if ($this->view->canEditParents) {
 				$formData = $this->_request->getPost ();
-				// $form->getElement('assigned_id')->getValidator('UniqueValue')->id = $formData['id'];
+				// $form->getElement('assigned_id')->getValidator('UniqueValue')->setId($formData['id']);
 				if ($form->isValid ( $formData )) {
 					$id = ( int ) $form->getValue ( 'id' );
 					$litters = new Litters ( );
@@ -865,7 +865,7 @@ class LitterController extends mdb_Controller {
 					'sacrificed_female_count' => $sacrificed_female_count,
 					'sacrificed_male_count' => $sacrificed_male_count,
 					'sacrificed_nosex_count' => $sacrificed_nosex_count,
-					'not_viable' => $not_viable,
+					'not_viable' => false,
 					'user_id' => $this->_user_id,
 			), 'id = '.$id);
 

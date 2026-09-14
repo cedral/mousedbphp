@@ -98,6 +98,11 @@ class mdb_Initializer extends Zend_Controller_Plugin_Abstract
 			$db = Zend_Db::factory ( $config->db );
 			Zend_Db_Table::setDefaultAdapter ( $db );
 			$db->query ( "SET NAMES 'utf8'" );
+			// The application predates strict SQL mode and stores '' in
+			// integer/date columns for blank form fields. MySQL 5.7+ and
+			// MariaDB 10.2+ enable STRICT_TRANS_TABLES by default, which
+			// turns those writes into errors, so relax it for this session.
+			$db->query ( "SET SESSION sql_mode = (SELECT REPLACE(REPLACE(@@SESSION.sql_mode, 'STRICT_TRANS_TABLES', ''), 'STRICT_ALL_TABLES', ''))" );
 		} catch (Exception $e) {
 			Zend_Registry::set('db_error', $e->getMessage());
 			mdb_Log::Write('unable to connect to database: '.$e->__toString());
@@ -106,7 +111,7 @@ class mdb_Initializer extends Zend_Controller_Plugin_Abstract
 		// First, set up the Cache
         $frontendOptions = array('automatic_serialization' => true);
 
-        $backendOptions = array('cache_dir' => '/tmp/');
+        $backendOptions = array('cache_dir' => sys_get_temp_dir() . DIRECTORY_SEPARATOR);
 
         $cache = Zend_Cache::factory('Core', 'File', $frontendOptions, $backendOptions);
 

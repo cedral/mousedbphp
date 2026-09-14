@@ -32,6 +32,23 @@ class mdb_Validate_UniqueValue extends Zend_Validate_Abstract {
 		$this->_id = $id;
 	}
 
+	/**
+	 * Set the id of the row being edited so its own value is not treated
+	 * as a duplicate.
+	 */
+	public function setId($id) {
+		$this->_id = $id;
+		return $this;
+	}
+
+	/**
+	 * Extra SQL condition appended to the uniqueness query.
+	 */
+	public function setWhere($where) {
+		$this->_where = $where;
+		return $this;
+	}
+
 	public function isValid($value) {
 
 		$this->_setValue ( $value );

@@ -80,7 +80,7 @@ class StrainController extends mdb_Controller {
 				if (! array_key_exists ( 'strain_name', $formData )) {
 					$form->removeElement ( 'strain_name' );
 				} else {
-					$form->getElement ( 'strain_name' )->getValidator ( 'UniqueValue' )->id = $formData ['id'];
+					$form->getElement ( 'strain_name' )->getValidator ( 'UniqueValue' )->setId($formData ['id']);
 				}
 				if ($form->isValid ( $formData )) {
 					$id = ( int ) $form->getValue ( 'id' );

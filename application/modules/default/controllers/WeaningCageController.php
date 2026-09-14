@@ -49,7 +49,7 @@ class WeaningCageController extends mdb_Controller {
 				if (! array_key_exists('assigned_id', $formData)) {
 				     $form->removeElement('assigned_id');
 				} else {
-    				$form->getElement('assigned_id')->getValidator('UniqueValue')->id = $formData['id'];
+    				$form->getElement('assigned_id')->getValidator('UniqueValue')->setId($formData['id']);
 				}
 				if ($form->isValid ( $formData )) {
 					$id = ( int ) $form->getValue ( 'id' );

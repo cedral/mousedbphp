@@ -1,6 +1,6 @@
 <?php
 
-class forms_BreedingCage extends Zend_Dojo_Form  {
+class forms_BreedingCage extends mdb_Form  {
 
 	public function __construct($options = null) {
 		parent::__construct ( $options );
@@ -39,7 +39,7 @@ class forms_BreedingCage extends Zend_Dojo_Form  {
 
 		$set_up_on = new Zend_Dojo_Form_Element_DateTextBox ( 'set_up_on' );
 		$set_up_on->setLabel ( 'Set Up On' )
-			->setOptions(array('datePattern' => 'yyMMdd'));
+			->setOptions(array('datePattern' => 'yyMMdd', 'strict' => true));
 
 		$breeding_type = new Zend_Dojo_Form_Element_FilteringSelect( 'breeding_type' );
 		$breeding_type->setLabel ( 'Breeding Type' )

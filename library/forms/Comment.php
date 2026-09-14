@@ -1,6 +1,6 @@
 <?php
 
-class forms_Comment extends Zend_Dojo_Form {
+class forms_Comment extends mdb_Form {
 	public function __construct($options = null) {
 		parent::__construct ( $options );
 		$this->setName ( 'comment_form' )

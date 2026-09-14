@@ -12,7 +12,7 @@ if (Zend_Auth::getInstance()->hasIdentity()) {
 
 if (mdb_Globals::getUserPref('search.go.input.suggest')) {
 	$forms_Go = $this->form('forms_Go',
-		array('action' => $this->url( array('controller' => 'search', 'action' => 'go' ), null, true ), 'method' => 'get'),
+		array('action' => $this->url( array('controller' => 'search', 'action' => 'go' ), null, true ), 'method' => 'get', 'novalidate' => 'novalidate'),
 		$this->filteringSelect(
 			'goItem',
 			null,
@@ -32,7 +32,7 @@ if (mdb_Globals::getUserPref('search.go.input.suggest')) {
 	);
 } else {
 	$forms_Go = $this->form('forms_Go',
-		array('action' => $this->url( array('controller' => 'search', 'action' => 'go' ), null, true ), 'method' => 'get'),
+		array('action' => $this->url( array('controller' => 'search', 'action' => 'go' ), null, true ), 'method' => 'get', 'novalidate' => 'novalidate'),
 		$this->textBox('goItem', Searches::GO_PLACEHOLDER,
 			array(
 				'onfocus' => 'if (dijit.byId(\'goItem\').getValue() == \''.Searches::GO_PLACEHOLDER.'\') { dijit.byId(\'goItem\').setValue(\'\'); dojo.byId(\'goItem\').style.color = \'black\'; dijit.byId(\'goItem\').focus();}',

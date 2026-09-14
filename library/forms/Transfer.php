@@ -1,6 +1,6 @@
 <?php
 
-class forms_Transfer extends Zend_Dojo_Form {
+class forms_Transfer extends mdb_Form {
 
 	public function __construct($options = null) {
 		parent::__construct ( $options );
@@ -62,7 +62,7 @@ class forms_Transfer extends Zend_Dojo_Form {
 
 		$transferred_on = new Zend_Dojo_Form_Element_DateTextBox ( 'transferred_on' );
 		$transferred_on->setLabel ( 'Transferred on' )
-			->setOptions(array('datePattern' => 'yyMMdd'));
+			->setOptions(array('datePattern' => 'yyMMdd', 'strict' => true));
 
 		$submit = new Zend_Dojo_Form_Element_SubmitButton ( 'submit' );
 		$submit->setLabel('Save')

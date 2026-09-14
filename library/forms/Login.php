@@ -1,6 +1,6 @@
 <?php
 
-class forms_Login extends Zend_Dojo_Form {
+class forms_Login extends mdb_Form {
 
 	public function __construct($options = null) {
 		parent::__construct( $options );

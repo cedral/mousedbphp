@@ -1,6 +1,6 @@
 <?php
 
-class forms_LitterParents extends Zend_Dojo_Form {
+class forms_LitterParents extends mdb_Form {
 
 	public function __construct($options = null) {
 		parent::__construct ( $options );

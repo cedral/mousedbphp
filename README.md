@@ -60,8 +60,13 @@ application fixes (see the git history for details):
   defined. Existing installs must run
   `documents/sql/upgrade_fulltext_indexes.sql` once or every search fails
   with MySQL error 1191.
-- Dojo is loaded from Google's CDN over https by default; override with
-  `system.dojo.cdn.*` or `system.dojo.local` in `config.ini`.
+- Dojo 1.13.0, the last 1.x release, is loaded from Google's CDN over https
+  by default; override with `system.dojo.cdn.*` or `system.dojo.local` in
+  `config.ini`. Two adjustments were needed for Dojo 1.7+: the `yyMMdd`
+  date fields use strict parsing (the lenient parser read 260115 as year
+  2601), and all forms carry `novalidate` because Dojo now leaves Zend's
+  `required="false"` on the native inputs, which the browser treats as
+  required.
 
 ## License and attribution
 
@@ -81,5 +86,6 @@ Bundled third-party components keep their own licenses:
 
 ## Known follow-ups
 
-- Dojo 1.5 is end of life. It still works and is still served by the CDN,
-  but any front-end rework should plan to replace it.
+- None outstanding. The legacy `dojo.require()` loader style still works
+  in Dojo 1.13 but is deprecated; a future front-end rework should move to
+  AMD modules or a different toolkit.

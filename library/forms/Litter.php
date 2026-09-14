@@ -1,6 +1,6 @@
 <?php
 
-class forms_Litter extends Zend_Dojo_Form {
+class forms_Litter extends mdb_Form {
 
 	public function __construct($options = null) {
 		parent::__construct ( $options );
@@ -47,11 +47,11 @@ class forms_Litter extends Zend_Dojo_Form {
 
 		$born_on = new Zend_Dojo_Form_Element_DateTextBox ( 'born_on' );
 		$born_on->setLabel ( 'Born on' )
-			->setOptions(array('datePattern' => 'yyMMdd'));
+			->setOptions(array('datePattern' => 'yyMMdd', 'strict' => true));
 
 		$weaned_on = new Zend_Dojo_Form_Element_DateTextBox ( 'weaned_on' );
 		$weaned_on->setLabel ( 'Weaned on' )
-			->setOptions(array('datePattern' => 'yyMMdd'));
+			->setOptions(array('datePattern' => 'yyMMdd', 'strict' => true));
 
 		$total_pups = new Zend_Dojo_Form_Element_NumberTextBox ( 'total_pups' );
 		$total_pups->setLabel ( 'Total pups' )

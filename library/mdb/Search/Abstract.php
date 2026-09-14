@@ -31,7 +31,7 @@ abstract class mdb_Search_Abstract
     public function getForm ()
     {
         if (null === $this->_form) {
-            $form = new Zend_Dojo_Form();
+            $form = new mdb_Form();
 
             $form->addElementPrefixPath('mdb_Validate', 'mdb/Validate', 'validate');
 

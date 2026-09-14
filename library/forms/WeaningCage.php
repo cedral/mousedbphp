@@ -1,6 +1,6 @@
 <?php
 
-class forms_WeaningCage extends Zend_Dojo_Form {
+class forms_WeaningCage extends mdb_Form {
 
 	public function __construct($options = null) {
 		parent::__construct ( $options );

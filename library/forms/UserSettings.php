@@ -1,5 +1,5 @@
 <?php
-class forms_UserSettings extends Zend_Dojo_Form
+class forms_UserSettings extends mdb_Form
 {
 
 	public function __construct ($options = null) {

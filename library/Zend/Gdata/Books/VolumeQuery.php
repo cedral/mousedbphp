@@ -16,9 +16,9 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Books
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: VolumeQuery.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -37,7 +37,7 @@ require_once('Zend/Gdata/Query.php');
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Books
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Gdata_Books_VolumeQuery extends Zend_Gdata_Query
@@ -58,7 +58,7 @@ class Zend_Gdata_Books_VolumeQuery extends Zend_Gdata_Query
      * Sets the minimum level of viewability of volumes to return in the search results
      *
      * @param string|null $value The minimum viewability - 'full' or 'partial'
-     * @return Zend_Gdata_Books_VolumeQuery Provides a fluent interface
+     * @return $this
      */
     public function setMinViewability($value = null)
     {

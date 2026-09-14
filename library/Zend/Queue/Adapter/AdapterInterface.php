@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Queue
  * @subpackage Adapter
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: AdapterInterface.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -26,7 +26,7 @@
  * @category   Zend
  * @package    Zend_Queue
  * @subpackage Adapter
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 interface Zend_Queue_Adapter_AdapterInterface
@@ -38,7 +38,7 @@ interface Zend_Queue_Adapter_AdapterInterface
      * @param  Zend_Queue $queue
      * @return void
      */
-    public function __construct($options, Zend_Queue $queue = null);
+    public function __construct($options, ?Zend_Queue $queue = null);
 
     /**
      * Retrieve queue instance
@@ -107,7 +107,8 @@ interface Zend_Queue_Adapter_AdapterInterface
      * @param  Zend_Queue|null $queue
      * @return integer
      */
-    public function count(Zend_Queue $queue = null);
+    #[\ReturnTypeWillChange]
+    public function count(?Zend_Queue $queue = null);
 
     /********************************************************************
      * Messsage management functions
@@ -120,7 +121,7 @@ interface Zend_Queue_Adapter_AdapterInterface
      * @param  Zend_Queue|null $queue
      * @return Zend_Queue_Message
      */
-    public function send($message, Zend_Queue $queue = null);
+    public function send($message, ?Zend_Queue $queue = null);
 
     /**
      * Get messages in the queue
@@ -130,7 +131,7 @@ interface Zend_Queue_Adapter_AdapterInterface
      * @param  Zend_Queue|null $queue
      * @return Zend_Queue_Message_Iterator
      */
-    public function receive($maxMessages = null, $timeout = null, Zend_Queue $queue = null);
+    public function receive($maxMessages = null, $timeout = null, ?Zend_Queue $queue = null);
 
     /**
      * Delete a message from the queue

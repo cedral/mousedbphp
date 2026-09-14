@@ -16,9 +16,9 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gapps
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: EmailListEntry.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -53,7 +53,7 @@ require_once 'Zend/Gdata/Gapps/Extension/EmailList.php';
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gapps
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Gdata_Gapps_EmailListEntry extends Zend_Gdata_Entry
@@ -75,7 +75,7 @@ class Zend_Gdata_Gapps_EmailListEntry extends Zend_Gdata_Entry
      *
      * @var Zend_Gdata_Extension_FeedLink
      */
-    protected $_feedLink = array();
+    protected $_feedLink = [];
 
     /**
      * Create a new instance.
@@ -121,12 +121,12 @@ class Zend_Gdata_Gapps_EmailListEntry extends Zend_Gdata_Entry
         $absoluteNodeName = $child->namespaceURI . ':' . $child->localName;
 
         switch ($absoluteNodeName) {
-            case $this->lookupNamespace('apps') . ':' . 'emailList';
+            case $this->lookupNamespace('apps') . ':' . 'emailList':
                 $emailList = new Zend_Gdata_Gapps_Extension_EmailList();
                 $emailList->transferFromDOM($child);
                 $this->_emailList = $emailList;
                 break;
-            case $this->lookupNamespace('gd') . ':' . 'feedLink';
+            case $this->lookupNamespace('gd') . ':' . 'feedLink':
                 $feedLink = new Zend_Gdata_Extension_FeedLink();
                 $feedLink->transferFromDOM($child);
                 $this->_feedLink[] = $feedLink;
@@ -158,7 +158,7 @@ class Zend_Gdata_Gapps_EmailListEntry extends Zend_Gdata_Entry
      *
      * @param Zend_Gdata_Gapps_Extension_EmailList $value The desired value
      *              this element, or null to unset.
-     * @return Zend_Gdata_Gapps_EventEntry Provides a fluent interface
+     * @return $this
      */
     public function setEmailList($value)
     {
@@ -203,7 +203,7 @@ class Zend_Gdata_Gapps_EmailListEntry extends Zend_Gdata_Entry
      * @param array $value A collection of Zend_Gdata_Gapps_Extension_FeedLink
      *          instances representing all feed links for this entry, or
      *          null to unset.
-     * @return Zend_Gdata_Gapps_EventEntry Provides a fluent interface
+     * @return $this
      */
     public function setFeedLink($value)
     {

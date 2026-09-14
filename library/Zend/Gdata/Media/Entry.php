@@ -16,9 +16,9 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Media
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Entry.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -42,7 +42,7 @@ require_once 'Zend/Gdata/Media/Extension/MediaGroup.php';
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Media
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Gdata_Media_Entry extends Zend_Gdata_Entry
@@ -122,7 +122,7 @@ class Zend_Gdata_Media_Entry extends Zend_Gdata_Entry
      * Sets the entry's mediaGroup object.
      *
      * @param Zend_Gdata_Media_Extension_MediaGroup $mediaGroup
-     * @return Zend_Gdata_Media_Entry Provides a fluent interface
+     * @return $this
      */
     public function setMediaGroup($mediaGroup)
     {

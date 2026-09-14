@@ -475,7 +475,7 @@ class MouseController extends mdb_Controller {
 
 	public function listAction() {
 
-        $sex = strtoupper($this->_request->getParam ( 'sex' ));
+        $sex = strtoupper((string) $this->_request->getParam ( 'sex' ));
 
         if ($sex == 'M' || $sex == 'F') {
             $where = 'sex = \''.$sex.'\'';

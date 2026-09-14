@@ -15,9 +15,9 @@
  *
  * @category   Zend
  * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Rss.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 
@@ -43,7 +43,7 @@ require_once 'Zend/Feed/Entry/Rss.php';
  *
  * @category   Zend
  * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Rss extends Zend_Feed_Abstract
@@ -433,7 +433,8 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
 
             if (isset($dataentry->category)) {
                 foreach ($dataentry->category as $category) {
-                    $node = $this->_element->createElement('category', $category['term']);
+                    $node = $this->_element->createElement('category');
+                    $node->appendChild($this->_element->createCDATASection($category['term']));
                     if (isset($category['scheme'])) {
                         $node->setAttribute('domain', $category['scheme']);
                     }
@@ -486,7 +487,7 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
     {
         // Return a complete document including XML prologue.
         $doc = new DOMDocument($this->_element->ownerDocument->version,
-                               $this->_element->ownerDocument->actualEncoding);
+                               $this->_element->ownerDocument->encoding);
         $root = $doc->createElement('rss');
 
         // Use rss version 2.0
@@ -521,7 +522,7 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
             throw new Zend_Feed_Exception('Cannot send RSS because headers have already been sent.');
         }
 
-        header('Content-Type: application/rss+xml; charset=' . $this->_element->ownerDocument->actualEncoding);
+        header('Content-Type: application/rss+xml; charset=' . $this->_element->ownerDocument->encoding);
 
         echo $this->saveXml();
     }

@@ -14,26 +14,27 @@
  *
  * @category   Zend
  * @package    Zend_Mail
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Storage.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
  * @category   Zend
  * @package    Zend_Mail
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Mail_Storage
 {
     // maildir and IMAP flags, using IMAP names, where possible to be able to distinguish between IMAP
     // system flags and other flags
-    const FLAG_PASSED   = 'Passed';
-    const FLAG_SEEN     = '\Seen';
-    const FLAG_ANSWERED = '\Answered';
-    const FLAG_FLAGGED  = '\Flagged';
-    const FLAG_DELETED  = '\Deleted';
-    const FLAG_DRAFT    = '\Draft';
-    const FLAG_RECENT   = '\Recent';
+    public const FLAG_PASSED   = 'Passed';
+    public const FLAG_SEEN     = '\Seen';
+    public const FLAG_UNSEEN   = '\Unseen';
+    public const FLAG_ANSWERED = '\Answered';
+    public const FLAG_FLAGGED  = '\Flagged';
+    public const FLAG_DELETED  = '\Deleted';
+    public const FLAG_DRAFT    = '\Draft';
+    public const FLAG_RECENT   = '\Recent';
 }

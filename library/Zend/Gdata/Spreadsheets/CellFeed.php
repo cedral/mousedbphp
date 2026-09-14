@@ -16,9 +16,9 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Spreadsheets
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: CellFeed.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -41,7 +41,7 @@ require_once 'Zend/Gdata/Spreadsheets/Extension/ColCount.php';
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage   Spreadsheets
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Gdata_Spreadsheets_CellFeed extends Zend_Gdata_Feed
@@ -101,12 +101,12 @@ class Zend_Gdata_Spreadsheets_CellFeed extends Zend_Gdata_Feed
     {
         $absoluteNodeName = $child->namespaceURI . ':' . $child->localName;
         switch ($absoluteNodeName) {
-            case $this->lookupNamespace('gs') . ':' . 'rowCount';
+            case $this->lookupNamespace('gs') . ':' . 'rowCount':
                 $rowCount = new Zend_Gdata_Spreadsheets_Extension_RowCount();
                 $rowCount->transferFromDOM($child);
                 $this->_rowCount = $rowCount;
                 break;
-            case $this->lookupNamespace('gs') . ':' . 'colCount';
+            case $this->lookupNamespace('gs') . ':' . 'colCount':
                 $colCount = new Zend_Gdata_Spreadsheets_Extension_ColCount();
                 $colCount->transferFromDOM($child);
                 $this->_colCount = $colCount;
@@ -119,7 +119,8 @@ class Zend_Gdata_Spreadsheets_CellFeed extends Zend_Gdata_Feed
 
     /**
      * Gets the row count for this feed.
-     * @return string The row count for the feed.
+     *
+     * @return Zend_Gdata_Spreadsheets_Extension_RowCount|null The row count for the feed.
      */
     public function getRowCount()
     {
@@ -128,7 +129,8 @@ class Zend_Gdata_Spreadsheets_CellFeed extends Zend_Gdata_Feed
 
     /**
      * Gets the column count for this feed.
-     * @return string The column count for the feed.
+     *
+     * @return Zend_Gdata_Spreadsheets_Extension_ColCount|null The column count for the feed.
      */
     public function getColumnCount()
     {

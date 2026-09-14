@@ -25,11 +25,11 @@ class mdb_Validate_UniqueValue extends Zend_Validate_Abstract {
 		self::EXISTS => "'%value%' is already used",
 		self::DB_ERR => "database error while validating value" );
 
-	public function __construct($table, $id, $id_col = 'id', $value_col) {
-		$this->table = $table;
-		$this->value_col = $value_col;
-		$this->id_col = $id_col;
-		$this->id = $id;
+	public function __construct($table, $id, $id_col, $value_col) {
+		$this->_table = $table;
+		$this->_value_col = $value_col;
+		$this->_id_col = $id_col;
+		$this->_id = $id;
 	}
 
 	public function isValid($value) {
@@ -39,16 +39,16 @@ class mdb_Validate_UniqueValue extends Zend_Validate_Abstract {
 		try {
 			$db = Zend_Db_Table::getDefaultAdapter ();
 
-			if (is_null($this->id)) {
-				$id_where = $db->quoteIdentifier($this->id_col).' is not null ';
+			if (is_null($this->_id)) {
+				$id_where = $db->quoteIdentifier($this->_id_col).' is not null ';
 			} else {
-				$id_where = $db->quoteIdentifier($this->id_col).' != '.$db->quote($this->id);
+				$id_where = $db->quoteIdentifier($this->_id_col).' != '.$db->quote($this->_id);
 			}
-			if ( $this->where ) {
-				$id_where.= ' and '.$this->where;
+			if ( $this->_where ) {
+				$id_where.= ' and '.$this->_where;
 			}
 
-			if ($db->fetchOne('select count(*) from '.$db->quoteIdentifier($this->table).' where '.$id_where.' and '.$db->quoteIdentifier($this->value_col).' = '.$db->quote($value))) {
+			if ($db->fetchOne('select count(*) from '.$db->quoteIdentifier($this->_table).' where '.$id_where.' and '.$db->quoteIdentifier($this->_value_col).' = '.$db->quote($value))) {
 				$this->_error ( self::EXISTS );
 				return false;
 			}

@@ -21,8 +21,8 @@ class mdb_Validate_ForeignKey extends Zend_Validate_Abstract {
 		self::DB_ERR => "database error while validating value" );
 
 	public function __construct($table, $id_col = 'id') {
-		$this->table = $table;
-		$this->id_col = $id_col;
+		$this->_table = $table;
+		$this->_id_col = $id_col;
 	}
 
 	public function isValid($value) {
@@ -32,7 +32,7 @@ class mdb_Validate_ForeignKey extends Zend_Validate_Abstract {
 		try {
 			$db = Zend_Db_Table::getDefaultAdapter ();
 
-			if (0 == $db->fetchOne('select count(*) from '.$db->quoteIdentifier($this->table).' where '.$db->quoteIdentifier($this->id_col).' = '.$db->quote($value))) {
+			if (0 == $db->fetchOne('select count(*) from '.$db->quoteIdentifier($this->_table).' where '.$db->quoteIdentifier($this->_id_col).' = '.$db->quote($value))) {
 				$this->_error ( self::NOT_EXISTS );
 				return false;
 			}

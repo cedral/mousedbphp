@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: LocalizedToNormalized.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -34,7 +34,7 @@ require_once 'Zend/Locale/Format.php';
  *
  * @category   Zend
  * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_LocalizedToNormalized implements Zend_Filter_Interface
@@ -43,11 +43,11 @@ class Zend_Filter_LocalizedToNormalized implements Zend_Filter_Interface
      * Set options
      * @var array
      */
-    protected $_options = array(
+    protected $_options = [
         'locale'      => null,
         'date_format' => null,
         'precision'   => null
-    );
+    ];
 
     /**
      * Class constructor
@@ -81,7 +81,7 @@ class Zend_Filter_LocalizedToNormalized implements Zend_Filter_Interface
      * @param  array $options (Optional) Options to use
      * @return Zend_Filter_LocalizedToNormalized
      */
-    public function setOptions(array $options = null)
+    public function setOptions(?array $options = null)
     {
         $this->_options = $options + $this->_options;
         return $this;

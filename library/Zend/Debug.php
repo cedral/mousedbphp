@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Debug
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Debug.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -24,7 +24,7 @@
  *
  * @category   Zend
  * @package    Zend_Debug
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -82,15 +82,21 @@ class Zend_Debug
         var_dump($var);
         $output = ob_get_clean();
 
-        // neaten the newlines and indents
-        $output = preg_replace("/\]\=\>\n(\s+)/m", "] => ", $output);
+        $varDumpIsOverloaded = extension_loaded('xdebug') && str_contains((string) ini_get('xdebug.mode'), 'develop');
+
+        if (!$varDumpIsOverloaded) {
+            // neaten the newlines and indents
+            $output = preg_replace("/\]\=\>\n(\s+)/m", '] => ', $output);
+        }
+
         if (self::getSapi() == 'cli') {
             $output = PHP_EOL . $label
                     . PHP_EOL . $output
                     . PHP_EOL;
         } else {
-            if(!extension_loaded('xdebug')) {
-                $output = htmlspecialchars($output, ENT_QUOTES);
+            if (!$varDumpIsOverloaded) {
+                $flags = ENT_QUOTES | ENT_SUBSTITUTE;
+                $output = htmlspecialchars($output, $flags);
             }
 
             $output = '<pre>'

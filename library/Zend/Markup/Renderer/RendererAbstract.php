@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Markup
  * @subpackage Renderer
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: RendererAbstract.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -39,21 +39,21 @@ require_once 'Zend/Markup/Renderer/TokenConverterInterface.php';
  * @category   Zend
  * @package    Zend_Markup
  * @subpackage Renderer
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Markup_Renderer_RendererAbstract
 {
-    const TYPE_CALLBACK = 4;
-    const TYPE_REPLACE  = 8;
-    const TYPE_ALIAS    = 16;
+    public const TYPE_CALLBACK = 4;
+    public const TYPE_REPLACE  = 8;
+    public const TYPE_ALIAS    = 16;
 
     /**
      * Tag info
      *
      * @var array
      */
-    protected $_markups = array();
+    protected $_markups = [];
 
     /**
      * Parser
@@ -88,7 +88,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      *
      * @var array
      */
-    protected $_groups = array();
+    protected $_groups = [];
 
     /**
      * Plugin loader for tags
@@ -119,14 +119,14 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      *
      * @return void
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         }
 
         if (isset($options['encoding'])) {
-            $this->setEncoding($options['encoding']);
+            static::setEncoding($options['encoding']);
         }
         if (isset($options['parser'])) {
             $this->setParser($options['parser']);
@@ -249,10 +249,10 @@ abstract class Zend_Markup_Renderer_RendererAbstract
                         'No alias was provided but tag was defined as such');
             }
 
-            $this->_markups[$name] = array(
+            $this->_markups[$name] = [
                 'type' => self::TYPE_ALIAS,
                 'name' => $options['name']
-            );
+            ];
         } else {
             if ($type && array_key_exists('empty', $options) && $options['empty']) {
                 // add a single replace markup
@@ -290,7 +290,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      */
     public function clearMarkups()
     {
-        $this->_markups = array();
+        $this->_markups = [];
     }
 
     /**
@@ -471,7 +471,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
     /**
      * Get the markup name
      *
-     * @param Zend_Markup_Token
+     * @param Zend_Markup_Token $token
      *
      * @return string
      */
@@ -547,7 +547,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
     /**
      * Get the default filter
      *
-     * @return void
+     * @return Zend_Filter
      */
     public function getDefaultFilter()
     {
@@ -673,7 +673,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
      *
      * @return void
      */
-    public function addGroup($name, array $allowedInside = array(), array $allowsInside = array())
+    public function addGroup($name, array $allowedInside = [], array $allowsInside = [])
     {
         $this->_groups[$name] = $allowsInside;
 

@@ -14,9 +14,9 @@
  *
  * @category  Zend
  * @package   Zend_Navigation
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Navigation.php 23953 2011-05-03 05:47:39Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -29,11 +29,17 @@ require_once 'Zend/Navigation/Container.php';
  *
  * @category  Zend
  * @package   Zend_Navigation
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Navigation extends Zend_Navigation_Container
 {
+    /**
+     * declare dynamic property to avoid error in PHP8.4:
+     * Error #8192 Creation of dynamic property Zend_Navigation::$breadcrumbs is deprecated
+     * when Session is started
+     */
+    public $breadcrumbs;
     /**
      * Creates a new navigation container
      *

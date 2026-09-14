@@ -9,3 +9,5 @@ stats/
 *.log
 /vendor/
 .env
+
+application/config/config.ini.live

@@ -1,7 +1,7 @@
 <?php Zend_Dojo::enableView($this);?>
 <div id="comments">
 <?php
-foreach($this->comments as $comment) {
+foreach((array) $this->comments as $comment) {
 
 	if ($this->userid == $comment['user_id'] ) {
 		$whoSaid = 'You';

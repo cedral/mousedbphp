@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Markup
  * @subpackage Parser
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Token.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -28,13 +28,13 @@ require_once 'Zend/Markup/TokenList.php';
 /**
  * @category   Zend
  * @package    Zend_Markup
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Markup_Token
 {
-    const TYPE_NONE    = 'none';
-    const TYPE_TAG     = 'tag';
+    public const TYPE_NONE    = 'none';
+    public const TYPE_TAG     = 'tag';
 
     /**
      * Children of this token
@@ -69,7 +69,7 @@ class Zend_Markup_Token
      *
      * @var array
      */
-    protected $_attributes = array();
+    protected $_attributes = [];
 
     /**
      * The used tag stopper (empty when none is found)
@@ -100,8 +100,8 @@ class Zend_Markup_Token
         $tag,
         $type,
         $name = '',
-        array $attributes = array(),
-        Zend_Markup_Token $parent = null
+        array $attributes = [],
+        ?Zend_Markup_Token $parent = null
     ) {
         $this->_tag        = $tag;
         $this->_type       = $type;

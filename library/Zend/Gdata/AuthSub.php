@@ -16,9 +16,9 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gdata
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: AuthSub.php 24319 2011-07-30 13:43:41Z mikaelkael $
+ * @version    $Id$
  */
 
 /**
@@ -40,19 +40,19 @@ require_once 'Zend/Version.php';
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gdata
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Gdata_AuthSub
 {
 
-    const AUTHSUB_REQUEST_URI      = 'https://www.google.com/accounts/AuthSubRequest';
+    public const AUTHSUB_REQUEST_URI      = 'https://www.google.com/accounts/AuthSubRequest';
 
-    const AUTHSUB_SESSION_TOKEN_URI = 'https://www.google.com/accounts/AuthSubSessionToken';
+    public const AUTHSUB_SESSION_TOKEN_URI = 'https://www.google.com/accounts/AuthSubSessionToken';
 
-    const AUTHSUB_REVOKE_TOKEN_URI  = 'https://www.google.com/accounts/AuthSubRevokeToken';
+    public const AUTHSUB_REVOKE_TOKEN_URI  = 'https://www.google.com/accounts/AuthSubRevokeToken';
 
-    const AUTHSUB_TOKEN_INFO_URI    = 'https://www.google.com/accounts/AuthSubTokenInfo';
+    public const AUTHSUB_TOKEN_INFO_URI    = 'https://www.google.com/accounts/AuthSubTokenInfo';
 
      /**
       * Creates a URI to request a single-use AuthSub token.
@@ -124,7 +124,7 @@ class Zend_Gdata_AuthSub
 
         // Parse Google's response
         if ($response->isSuccessful()) {
-            $goog_resp = array();
+            $goog_resp = [];
             foreach (explode("\n", $response->getBody()) as $l) {
                 $l = chop($l);
                 if ($l) {
@@ -236,10 +236,10 @@ class Zend_Gdata_AuthSub
             throw new Zend_Gdata_App_HttpException('Client is not an instance of Zend_Gdata_HttpClient.');
         }
         $useragent = 'Zend_Framework_Gdata/' . Zend_Version::VERSION;
-        $client->setConfig(array(
+        $client->setConfig([
                 'strictredirects' => true,
                 'useragent' => $useragent
-            )
+            ]
         );
         $client->setAuthSubToken($token);
         return $client;

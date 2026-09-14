@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Validate
  * @subpackage Sitemap
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Lastmod.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -33,7 +33,7 @@ require_once 'Zend/Validate/Abstract.php';
  * @category   Zend
  * @package    Zend_Validate
  * @subpackage Sitemap
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Sitemap_Lastmod extends Zend_Validate_Abstract
@@ -42,24 +42,24 @@ class Zend_Validate_Sitemap_Lastmod extends Zend_Validate_Abstract
      * Regular expression to use when validating
      *
      */
-    const LASTMOD_REGEX = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])(T([0-1][0-9]|2[0-3])(:[0-5][0-9])(:[0-5][0-9])?(\\+|-)([0-1][0-9]|2[0-3]):[0-5][0-9])?$/';
+    public const LASTMOD_REGEX = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])(T([0-1][0-9]|2[0-3])(:[0-5][0-9])(:[0-5][0-9])?(\\+|-)([0-1][0-9]|2[0-3]):[0-5][0-9])?$/';
 
     /**
      * Validation key for not valid
      *
      */
-    const NOT_VALID = 'sitemapLastmodNotValid';
-    const INVALID   = 'sitemapLastmodInvalid';
+    public const NOT_VALID = 'sitemapLastmodNotValid';
+    public const INVALID   = 'sitemapLastmodInvalid';
 
     /**
      * Validation failure message template definitions
      *
      * @var array
      */
-    protected $_messageTemplates = array(
-        self::NOT_VALID => "'%value%' is no valid sitemap lastmod",
+    protected $_messageTemplates = [
+        self::NOT_VALID => "'%value%' is not a valid sitemap lastmod",
         self::INVALID   => "Invalid type given. String expected",
-    );
+    ];
 
     /**
      * Validates if a string is valid as a sitemap lastmod

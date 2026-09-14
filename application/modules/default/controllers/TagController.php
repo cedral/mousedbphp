@@ -85,7 +85,7 @@ class TagController extends mdb_Controller {
 
 		$ref_table = mdb_Globals::stripslashes($this->_request->getParam ( 'table' , null));
 		$ref_item_id = mdb_Globals::stripslashes($this->_request->getParam ( 'item' , null));
-		$tag = trim(stripslashes($this->_request->getParam ( 'tag' )));
+		$tag = trim(stripslashes((string) $this->_request->getParam ( 'tag' )));
 
 		$this->_helper->viewRenderer->setNoRender(true);
 		if (! in_array($ref_table, array(Tags::STRAIN, Tags::MOUSE, Tags::LITTER, Tags::BREEDING_CAGE, Tags::WEANING_CAGE, Tags::TRANSFER, Tags::PROTOCOL, Tags::SEARCH))) {
@@ -114,8 +114,8 @@ class TagController extends mdb_Controller {
 	    $selectedItems = array();
 
 		$ref_table = mdb_Globals::stripslashes($this->_request->getParam ( 'multi_table' , null));
-    	$tag = trim(stripslashes($this->_request->getParam ( 'multi_tag' )));
-		$redirect = trim(stripslashes($this->_request->getParam ( 'redirect' )));
+    	$tag = trim(stripslashes((string) $this->_request->getParam ( 'multi_tag' )));
+		$redirect = trim(stripslashes((string) $this->_request->getParam ( 'redirect' )));
 
 		if (! in_array($ref_table, array(Tags::STRAIN, Tags::MOUSE, Tags::LITTER, Tags::BREEDING_CAGE, Tags::WEANING_CAGE, Tags::TRANSFER, Tags::SEARCH))) {
             mdb_Messages::add ( 'I do not know how to tag table '.$ref_table, 'error');

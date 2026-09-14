@@ -16,7 +16,7 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gapps
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id:$
  */
@@ -46,7 +46,7 @@ require_once 'Zend/Gdata/Gapps/Extension/Property.php';
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gapps
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Gdata_Gapps_MemberEntry extends Zend_Gdata_Entry
@@ -60,7 +60,7 @@ class Zend_Gdata_Gapps_MemberEntry extends Zend_Gdata_Entry
      *
      * @var Zend_Gdata_Gapps_Extension_Property
      */
-    protected $_property = array();
+    protected $_property = [];
 
     /**
      * Create a new instance.
@@ -105,7 +105,7 @@ class Zend_Gdata_Gapps_MemberEntry extends Zend_Gdata_Entry
 
         switch ($absoluteNodeName) {
 
-            case $this->lookupNamespace('apps') . ':' . 'property';
+            case $this->lookupNamespace('apps') . ':' . 'property':
                 $property = new Zend_Gdata_Gapps_Extension_Property();
                 $property->transferFromDOM($child);
                 $this->_property[] = $property;
@@ -146,7 +146,7 @@ class Zend_Gdata_Gapps_MemberEntry extends Zend_Gdata_Entry
      *
      * @param array $value A collection of
      *          Zend_Gdata_Gapps_Extension_Property objects.
-     * @return Zend_Gdata_Gapps_MemberEntry Provides a fluent interface.
+     * @return $this
      */
     public function setProperty($value)
     {

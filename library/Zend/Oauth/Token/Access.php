@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Access.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /** Zend_Oauth_Token */
@@ -34,7 +34,7 @@ require_once 'Zend/Oauth/Client.php';
 /**
  * @category   Zend
  * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Oauth_Token_Access extends Zend_Oauth_Token
@@ -49,7 +49,7 @@ class Zend_Oauth_Token_Access extends Zend_Oauth_Token
      * @return string
      */
     public function toHeader(
-        $url, Zend_Oauth_Config_ConfigInterface $config, array $customParams = null, $realm = null
+        $url, Zend_Oauth_Config_ConfigInterface $config, ?array $customParams = null, $realm = null
     ) {
         if (!Zend_Uri::check($url)) {
             require_once 'Zend/Oauth/Exception.php';
@@ -69,7 +69,7 @@ class Zend_Oauth_Token_Access extends Zend_Oauth_Token
      * @param  null|array $params
      * @return string
      */
-    public function toQueryString($url, Zend_Oauth_Config_ConfigInterface $config, array $params = null)
+    public function toQueryString($url, Zend_Oauth_Config_ConfigInterface $config, ?array $params = null)
     {
         if (!Zend_Uri::check($url)) {
             require_once 'Zend/Oauth/Exception.php';

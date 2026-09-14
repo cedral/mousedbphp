@@ -14,9 +14,9 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id: Sha1.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version   $Id$
  */
 
 /**
@@ -29,7 +29,7 @@ require_once 'Zend/Validate/File/Hash.php';
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
@@ -37,18 +37,18 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
     /**
      * @const string Error constants
      */
-    const DOES_NOT_MATCH = 'fileSha1DoesNotMatch';
-    const NOT_DETECTED   = 'fileSha1NotDetected';
-    const NOT_FOUND      = 'fileSha1NotFound';
+    public const DOES_NOT_MATCH = 'fileSha1DoesNotMatch';
+    public const NOT_DETECTED   = 'fileSha1NotDetected';
+    public const NOT_FOUND      = 'fileSha1NotFound';
 
     /**
      * @var array Error message templates
      */
-    protected $_messageTemplates = array(
+    protected $_messageTemplates = [
         self::DOES_NOT_MATCH => "File '%value%' does not match the given sha1 hashes",
         self::NOT_DETECTED   => "A sha1 hash could not be evaluated for the given file",
         self::NOT_FOUND      => "File '%value%' is not readable or does not exist",
-    );
+    ];
 
     /**
      * Hash of the file
@@ -64,13 +64,14 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      *
      * @param  string|array $options
      * @return void
+     * @throws Zend_Validate_Exception
      */
     public function __construct($options)
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (is_scalar($options)) {
-            $options = array('hash1' => $options);
+            $options = ['hash1' => $options];
         } elseif (!is_array($options)) {
             require_once 'Zend/Validate/Exception.php';
             throw new Zend_Validate_Exception('Invalid options to validator provided');
@@ -82,7 +83,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
     /**
      * Returns all set sha1 hashes
      *
-     * @return array
+     * @return string
      */
     public function getSha1()
     {
@@ -93,7 +94,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      * Sets the sha1 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function setHash($options)
     {
@@ -110,7 +111,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      * Sets the sha1 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function setSha1($options)
     {
@@ -122,7 +123,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      * Adds the sha1 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function addHash($options)
     {
@@ -139,7 +140,7 @@ class Zend_Validate_File_Sha1 extends Zend_Validate_File_Hash
      * Adds the sha1 hash for one or multiple files
      *
      * @param  string|array $options
-     * @return Zend_Validate_File_Hash Provides a fluent interface
+     * @return $this
      */
     public function addSha1($options)
     {

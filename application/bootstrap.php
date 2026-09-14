@@ -25,8 +25,9 @@ if ($handle) {
 
 require_once "Zend/Loader.php";
 
-// Set up autoload.
-Zend_Loader::registerAutoload();
+// Set up autoload (Zend_Loader::registerAutoload is deprecated in ZF 1.8+).
+require_once "Zend/Loader/Autoloader.php";
+Zend_Loader_Autoloader::getInstance()->setFallbackAutoloader(true);
 
 // Prepare the front controller.
 $frontController = Zend_Controller_Front::getInstance();

@@ -15,7 +15,7 @@
  * @category   Zend
  * @package    Zend_Http
  * @subpackage UserAgent
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -32,7 +32,7 @@ require_once 'Zend/Session/Namespace.php';
 /**
  * @package    Zend_Http
  * @subpackage UserAgent
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Http_UserAgent_Storage_Session implements Zend_Http_UserAgent_Storage
@@ -40,12 +40,12 @@ class Zend_Http_UserAgent_Storage_Session implements Zend_Http_UserAgent_Storage
     /**
      * Default session namespace
      */
-    const NAMESPACE_DEFAULT = 'Zend_Http_UserAgent';
+    public const NAMESPACE_DEFAULT = 'Zend_Http_UserAgent';
 
     /**
      * Default session object member name
      */
-    const MEMBER_DEFAULT = 'storage';
+    public const MEMBER_DEFAULT = 'storage';
 
     /**
      * Object to proxy $_SESSION storage

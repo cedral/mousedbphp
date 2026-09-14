@@ -16,7 +16,7 @@ class mdb_Messages {
 	public static function count() {
 	
 		$sessionNamespace = new Zend_Session_Namespace ( self::MESSAGE_NAMESPACE );
-		return count($sessionNamespace->messages);
+		return is_array($sessionNamespace->messages) ? count($sessionNamespace->messages) : 0;
 	}
 	
 	public static function pop() {
@@ -32,10 +32,11 @@ class mdb_Messages {
 
 		$sessionNamespace = new Zend_Session_Namespace ( self::MESSAGE_NAMESPACE );
 		
-		if ( is_array($sessionNamespace->messages) ) {
-			$message = array_shift($sessionNamespace->messages[0]);
+		$message = null;
+		if ( is_array($sessionNamespace->messages) && isset($sessionNamespace->messages[0]) ) {
+			$message = $sessionNamespace->messages[0];
 		}
-		
+
 		return $message;
 
 	}
@@ -43,7 +44,11 @@ class mdb_Messages {
 	public static function discard() {
 
 		$sessionNamespace = new Zend_Session_Namespace ( self::MESSAGE_NAMESPACE );
-		array_shift($sessionNamespace->messages);	
+		if ( is_array($sessionNamespace->messages) ) {
+			$messages = $sessionNamespace->messages;
+			array_shift($messages);
+			$sessionNamespace->messages = $messages;
+		}
 
 	}
 	

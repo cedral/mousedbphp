@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Oauth.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /** Zend_Http_Client */
@@ -25,19 +25,20 @@ require_once 'Zend/Http/Client.php';
 /**
  * @category   Zend
  * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Oauth
 {
-    const REQUEST_SCHEME_HEADER      = 'header';
-    const REQUEST_SCHEME_POSTBODY    = 'postbody';
-    const REQUEST_SCHEME_QUERYSTRING = 'querystring';
-    const GET                        = 'GET';
-    const POST                       = 'POST';
-    const PUT                        = 'PUT';
-    const DELETE                     = 'DELETE';
-    const HEAD                       = 'HEAD';
+    public const REQUEST_SCHEME_HEADER      = 'header';
+    public const REQUEST_SCHEME_POSTBODY    = 'postbody';
+    public const REQUEST_SCHEME_QUERYSTRING = 'querystring';
+    public const GET                        = 'GET';
+    public const POST                       = 'POST';
+    public const PUT                        = 'PUT';
+    public const DELETE                     = 'DELETE';
+    public const HEAD                       = 'HEAD';
+    public const OPTIONS                    = 'OPTIONS';
 
     /**
      * Singleton instance if required of the HTTP client

@@ -14,9 +14,9 @@
  *
  * @category   Zend
  * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Identical.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /** @see Zend_Validate_Abstract */
@@ -25,7 +25,7 @@ require_once 'Zend/Validate/Abstract.php';
 /**
  * @category   Zend
  * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Identical extends Zend_Validate_Abstract
@@ -34,24 +34,24 @@ class Zend_Validate_Identical extends Zend_Validate_Abstract
      * Error codes
      * @const string
      */
-    const NOT_SAME      = 'notSame';
-    const MISSING_TOKEN = 'missingToken';
+    public const NOT_SAME      = 'notSame';
+    public const MISSING_TOKEN = 'missingToken';
 
     /**
      * Error messages
      * @var array
      */
-    protected $_messageTemplates = array(
+    protected $_messageTemplates = [
         self::NOT_SAME      => "The two given tokens do not match",
         self::MISSING_TOKEN => 'No token was provided to match against',
-    );
+    ];
 
     /**
      * @var array
      */
-    protected $_messageVariables = array(
+    protected $_messageVariables = [
         'token' => '_tokenString'
-    );
+    ];
 
     /**
      * Original token against which to validate
@@ -64,8 +64,7 @@ class Zend_Validate_Identical extends Zend_Validate_Abstract
     /**
      * Sets validator options
      *
-     * @param  mixed $token
-     * @return void
+     * @param mixed $token
      */
     public function __construct($token = null)
     {
@@ -102,7 +101,7 @@ class Zend_Validate_Identical extends Zend_Validate_Abstract
      */
     public function setToken($token)
     {
-        $this->_tokenString = (string) $token;
+        $this->_tokenString = $token;
         $this->_token       = $token;
         return $this;
     }
@@ -120,11 +119,12 @@ class Zend_Validate_Identical extends Zend_Validate_Abstract
     /**
      * Sets the strict parameter
      *
-     * @param Zend_Validate_Identical
+     * @param Zend_Validate_Identical $strict
+     * @return $this
      */
     public function setStrict($strict)
     {
-        $this->_strict = (boolean) $strict;
+        $this->_strict = (bool) $strict;
         return $this;
     }
 
@@ -140,7 +140,7 @@ class Zend_Validate_Identical extends Zend_Validate_Abstract
      */
     public function isValid($value, $context = null)
     {
-        $this->_setValue((string) $value);
+        $this->_setValue($value);
 
         if (($context !== null) && isset($context) && array_key_exists($this->getToken(), $context)) {
             $token = $context[$this->getToken()];

@@ -16,9 +16,9 @@
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gapps
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: EmailListRecipientEntry.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -49,7 +49,7 @@ require_once 'Zend/Gdata/Extension/Who.php';
  * @category   Zend
  * @package    Zend_Gdata
  * @subpackage Gapps
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Gdata_Gapps_EmailListRecipientEntry extends Zend_Gdata_Entry
@@ -107,7 +107,7 @@ class Zend_Gdata_Gapps_EmailListRecipientEntry extends Zend_Gdata_Entry
         $absoluteNodeName = $child->namespaceURI . ':' . $child->localName;
 
         switch ($absoluteNodeName) {
-            case $this->lookupNamespace('gd') . ':' . 'who';
+            case $this->lookupNamespace('gd') . ':' . 'who':
                 $who = new Zend_Gdata_Extension_Who();
                 $who->transferFromDOM($child);
                 $this->_who = $who;
@@ -135,7 +135,7 @@ class Zend_Gdata_Gapps_EmailListRecipientEntry extends Zend_Gdata_Entry
      *
      * @param Zend_Gdata_Extension_Who $value The desired value for this
      *          instance's who property.
-     * @return Zend_Gdata_Gapps_EventEntry Provides a fluent interface.
+     * @return $this
      */
     public function setWho($value)
     {

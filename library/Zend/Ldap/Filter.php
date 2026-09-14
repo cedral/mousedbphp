@@ -15,9 +15,9 @@
  * @category   Zend
  * @package    Zend_Ldap
  * @subpackage Filter
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Filter.php 23775 2011-03-01 17:25:24Z ralph $
+ * @version    $Id$
  */
 
 /**
@@ -31,17 +31,17 @@ require_once 'Zend/Ldap/Filter/String.php';
  * @category   Zend
  * @package    Zend_Ldap
  * @subpackage Filter
- * @copyright  Copyright (c) 2005-2011 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Ldap_Filter extends Zend_Ldap_Filter_String
 {
-    const TYPE_EQUALS         = '=';
-    const TYPE_GREATER        = '>';
-    const TYPE_GREATEROREQUAL = '>=';
-    const TYPE_LESS           = '<';
-    const TYPE_LESSOREQUAL    = '<=';
-    const TYPE_APPROX         = '~=';
+    public const TYPE_EQUALS         = '=';
+    public const TYPE_GREATER        = '>';
+    public const TYPE_GREATEROREQUAL = '>=';
+    public const TYPE_LESS           = '<';
+    public const TYPE_LESSOREQUAL    = '<=';
+    public const TYPE_APPROX         = '~=';
 
     /**
      * Creates an 'equals' filter.

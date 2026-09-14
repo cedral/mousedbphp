@@ -152,7 +152,7 @@ class LitterController extends mdb_Controller {
 		$next_sequence = 1;
 		// parse out breeding cage "number" - ie, in 5746(4), we want 5746.
 		$matches = array();
-		if ( eregi('^[0-9A-Za-z]+', $cage_details['assigned_id'], $matches) ) {
+		if ( preg_match('/^[0-9A-Za-z]+/i', $cage_details['assigned_id'], $matches) ) {
 			$cage_root_number = $matches[0];
 
 			// now find all litters with thar root
@@ -161,7 +161,7 @@ class LitterController extends mdb_Controller {
 			// we are only interested in last digits after -.
 			foreach ($litter_list as $used_litter_id) {
 				$matches = array();
-				if (eregi('[0-9]*$', $used_litter_id, $matches)) {
+				if (preg_match('/[0-9]*$/', $used_litter_id, $matches)) {
 					if (intval($matches[0]) >= $next_sequence) {
 						$next_sequence = intval($matches[0]) + 1;
 					}

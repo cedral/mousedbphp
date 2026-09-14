@@ -52,6 +52,22 @@ application fixes (see the git history for details):
 - Dojo is loaded from Google's CDN over https by default; override with
   `system.dojo.cdn.*` or `system.dojo.local` in `config.ini`.
 
+## License and attribution
+
+This application is derived from **LAMA** (Laboratory Animal Management
+Assistant) by Marko Milisavljevic, published at
+<https://launchpad.net/mousedb> under the GNU General Public License
+version 3. This repository carries that code forward with local
+modifications and the PHP 8 port described above, and is distributed under
+the same license. See the `LICENSE` file for the full text.
+
+Bundled third-party components keep their own licenses:
+
+- `library/Zend`: zf1-future, New BSD License.
+- `library/mdb/Validate/Date.php`: Travello GmbH, New BSD License.
+- `public_html/styles/blueprint`: Blueprint CSS, MIT-style license.
+- `public_html/scripts/sorttable.js`: Stuart Langridge, MIT license.
+
 ## Known follow-ups
 
 - Passwords are stored as unsalted MD5 (`users.password`). Moving to
